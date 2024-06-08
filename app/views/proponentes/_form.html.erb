@@ -1,0 +1,89 @@
+<%= form_with(model: proponente, local: false) do |form| %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= form.label :nome, class: "form-label" %>
+      <%= form.text_field :nome, class: "form-control" %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= form.label :cpf, class: "form-label" %>
+      <%= form.text_field :cpf, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= form.label :data_de_nascimento, class: "form-label" %>
+      <%= form.date_select :data_de_nascimento, class: "form-control" %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= form.label :salario, class: "form-label" %>
+      <%= form.number_field :salario, step: 0.01, class: "form-control", id: "salario" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= form.label :inss, class: "form-label" %>
+      <%= form.number_field :inss, step: 0.01, class: "form-control", readonly: true, id: "inss" %>
+    </div>
+  </div>
+
+  <h3>Endereço</h3>
+  <%= form.fields_for :endereco do |endereco_form| %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= endereco_form.label :logradouro, class: "form-label" %>
+        <%= endereco_form.text_field :logradouro, class: "form-control" %>
+      </div>
+      <div class="col-md-2 mb-3">
+        <%= endereco_form.label :numero, class: "form-label" %>
+        <%= endereco_form.text_field :numero, class: "form-control" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= endereco_form.label :bairro, class: "form-label" %>
+        <%= endereco_form.text_field :bairro, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <%= endereco_form.label :cidade, class: "form-label" %>
+        <%= endereco_form.text_field :cidade, class: "form-control" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= endereco_form.label :estado, class: "form-label" %>
+        <%= endereco_form.text_field :estado, class: "form-control" %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= endereco_form.label :cep, class: "form-label" %>
+        <%= endereco_form.text_field :cep, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <h3>Telefones</h3>
+  <%= form.fields_for :telefones do |telefone_form| %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= telefone_form.label :numero, class: "form-label" %>
+        <%= telefone_form.text_field :numero, class: "form-control" %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= telefone_form.label :tipo, class: "form-label" %>
+        <%= telefone_form.select :tipo, Telefone.tipos.keys.map { |tipo| [tipo.humanize, tipo] }, {}, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="d-grid gap-2">
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script>
+    document.getElementById('salario').addEventListener('input', function() {
+        const salario = this.value;
+        fetch(`/proponentes/calcular_inss?salario=${salario}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('inss').value = data.inss;
+            });
+    });
+</script>
