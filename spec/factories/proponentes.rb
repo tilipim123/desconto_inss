@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
+# spec/factories/proponentes.rb
 FactoryBot.define do
   factory :proponente do
-    nome { "MyString" }
-    cpf { "MyString" }
-    data_de_nascimento { "2024-06-07" }
-    salario { "9.99" }
-    inss { "9.99" }
+    nome { 'Nome Exemplo' }
+    cpf { '12345678901' }
+    data_de_nascimento { '2000-01-01' }
+    salario { 1500.00 }
+    inss { 100.00 }
+    endereco
   end
 end

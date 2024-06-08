@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
+# spec/factories/enderecos.rb
 FactoryBot.define do
   factory :endereco do
-    logradouro { "MyString" }
-    numero { "MyString" }
-    bairro { "MyString" }
-    cidade { "MyString" }
-    estado { "MyString" }
-    cep { "MyString" }
-    proponente { nil }
+    logradouro { 'Rua Exemplo' }
+    numero { '123' }
+    bairro { 'Bairro Exemplo' }
+    cidade { 'Cidade Exemplo' }
+    estado { 'Estado Exemplo' }
+    cep { '12345678' }
+    proponente
   end
 end
