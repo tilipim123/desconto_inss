@@ -1,0 +1,27 @@
+<div id="<%= dom_id(proponente) %>" class="card mb-3">
+  <div class="card-header">
+    <h5 class="card-title">Detalhes do Proponente</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Nome:</strong>
+      <%= proponente.nome %>
+    </p>
+    <p class="card-text">
+      <strong>CPF:</strong>
+      <%= proponente.cpf %>
+    </p>
+    <p class="card-text">
+      <strong>Data de Nascimento:</strong>
+      <%= proponente.data_de_nascimento %>
+    </p>
+    <p class="card-text">
+      <strong>Salário:</strong>
+      <%= number_to_currency(proponente.salario) %>
+    </p>
+    <p class="card-text">
+      <strong>INSS:</strong>
+      <%= number_to_currency(proponente.inss) %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<p class="text-success"><%= notice %></p>
+
+<h1>Proponentes</h1>
+
+<div id="proponentes" class="mt-4">
+  <% @proponentes.each do |proponente| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <%= render proponente %>
+        <p>
+          <%= link_to "Visualizar", proponente, class: "btn btn-info" %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @proponentes %>
+</div>
+
+<%= link_to "Novo Proponente", new_proponente_path, class: "btn btn-primary mt-4" %>

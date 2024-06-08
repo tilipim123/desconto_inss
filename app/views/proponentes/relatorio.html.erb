@@ -1,0 +1,12 @@
+<h1>Relatório de Proponentes</h1>
+
+<% @proponentes.each do |faixa, proponentes| %>
+  <h2><%= faixa %></h2>
+  <ul>
+    <% proponentes.each do |proponente| %>
+      <li><%= proponente.nome %> - <%= number_to_currency(proponente.salario) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= line_chart @faixa_salarial, xtitle: "Faixa Salarial", ytitle: "Quantidade de Proponentes", height: "500px", library: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } } %>

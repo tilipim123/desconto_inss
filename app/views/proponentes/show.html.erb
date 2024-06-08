@@ -1,0 +1,19 @@
+<p class="text-success"><%= notice %></p>
+
+<%= render @proponente %>
+
+<h3 class="mt-4">Atualizar Salário</h3>
+<%= form_with url: atualizar_salario_proponente_path(@proponente), method: :patch, local: true, class: "needs-validation" do %>
+  <div class="form-group">
+    <%= label_tag :salario, "Novo Salário" %>
+    <%= number_field_tag :salario, nil, step: 0.01, class: "form-control" %>
+  </div>
+  <%= submit_tag "Atualizar Salário", class: "btn btn-primary" %>
+<% end %>
+
+<div class="mt-4">
+  <%= link_to "Editar", edit_proponente_path(@proponente), class: "btn btn-secondary" %> |
+  <%= link_to "Voltar", proponentes_path, class: "btn btn-secondary" %>
+
+  <%= button_to "Excluir", @proponente, method: :delete, class: "btn btn-danger" %>
+</div>
